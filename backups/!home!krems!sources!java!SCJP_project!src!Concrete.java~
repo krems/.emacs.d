@@ -1,0 +1,16 @@
+public class Concrete extends AbstrClass implements Main {
+  public void doIt() {
+    return;
+  }
+
+  public int do() {
+    return 0;
+  }
+
+  public void doNothing() {}
+
+  public static void main(String[] args) {
+    System.out.println("It works!");
+  }
+}
+  

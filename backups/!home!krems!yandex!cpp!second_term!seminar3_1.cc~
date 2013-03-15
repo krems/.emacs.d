@@ -1,0 +1,69 @@
+#include <iostrean>
+#include <stdlib.h>
+
+#define SIZE 4;
+
+class SelfHolder {
+  static SelfHolder buffer[SIZE];
+  static bool isOccupied[SIZE];
+  static size_t occupied;
+
+  size_t selfPosition;
+ public:
+  static void* operator new (size_t sz) {
+    if (isEnoughMemory()) {
+      void* freeSpace = buffer + getFreePosition();
+      void* p = ::operator new(sz, );
+      setOccupied(freeSpace);
+      return p;
+    }
+    selfPosition = SIZE;
+    return ::operator new(sz);
+  }
+
+  static void operator delete(void* ptr) {
+    if (getSelfPosition() == SIZE) {
+      ::operator delete(ptr);
+      return;
+    }
+    setFree(getSelfPosition());
+    buffer[getSelfPosition()]::~SelfHolder();
+  }
+
+ protected:
+  bool isEnoughMemory() {
+    if (occupied == SIZE) {
+      return false;
+    }
+    return true;
+  }
+
+  size_t getFreePosition() {
+    for (size_t i = 0; i < SIZE; ++i) {
+      if (!isOccupied[i]) {
+        return i;
+      }
+    }
+    return 0;
+  }
+
+  void setOccupied(void* ptr) {
+    size_t index = ptr - buffer;
+    ++occupied;
+    isOccupied[index] = true;
+    selfPosition = index;
+  }
+
+  size_t getSelfPosition() {
+    return selfPosition;
+  }
+
+  void setFree(size_t pos) {
+    --occupied;
+    isOccupied[pos] = false;
+  }
+};
+
+int main() {
+  return 0;
+}

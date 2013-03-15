@@ -1,0 +1,204 @@
+#include <iostream>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+template<typename T>
+struct ArrayStorageStrategy {
+  ArrayStorageStrategy(T* pointer) : ptr(pointer) {}
+  
+  virtual ~ArrayStorageStrategy() {
+    delete[] ptr;
+  }
+
+  T operator [] (size_t pos) const {
+    return *(ptr + pos);
+  }
+
+  T& operator [] (size_t pos) {
+    return *(ptr + pos);
+  }
+  
+ protected:
+  T* ptr;
+};
+
+template<typename T>
+struct SinglePtrStorageStrategy {
+  SinglePtrStorageStrategy(T* pointer) : ptr(pointer) {}
+  
+  virtual ~SinglePtrStorageStrategy() {
+    delete ptr;
+  }
+
+ protected:
+  T* ptr;
+};
+
+template<typename T, template<typename> class StorageStrategy>
+class RestrictCopyOwnershipStrategy: public StorageStrategy<T> {
+ public:
+  RestrictCopyOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {}
+ protected:
+  RestrictCopyOwnershipStrategy&
+  operator =(const RestrictCopyOwnershipStrategy&);
+  RestrictCopyOwnershipStrategy(const RestrictCopyOwnershipStrategy&);
+};
+
+struct ReferenceCounter {
+ private:
+  size_t count;
+ public:
+  void addReference() {
+    ++count;
+  }
+
+  size_t release() {
+    --count;
+  }
+};
+
+template<typename T, template<typename> class StorageStrategy>
+class LinkCounterOwnershipStrategy: public StorageStrategy<T> {
+ public:
+  LinkCounterOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {
+    counter = new ReferenceCounter;
+    counter->addReference();
+  }
+  
+  LinkCounterOwnershipStrategy&
+  operator =(const LinkCounterOwnershipStrategy& other) {
+    if (&other == this) {
+      return *this;
+    }
+    if (counter->release() == 0) {
+      delete counter;
+      delete ptr; // and what if [] ?
+    }
+    counter = other.counter;
+    counter->addReference();
+    ptr = other.ptr;
+    return *this;    
+  }
+  
+  LinkCounterOwnershipStrategy(const LinkCounterOwnershipStrategy& other):
+      StorageStrategy<T>(other.ptr) {
+    counter = other.counter;
+    counter->addReference();
+  }
+
+  ~LinkCounterOwnershipStrategy() {
+    if (counter->release() != 0) {
+      ptr = NULL;
+      counter = NULL;
+    } else {
+      delete counter;
+    }
+  }
+ protected:
+  StorageStrategy<T>::ptr;
+  ReferenceCounter* counter;
+};
+
+template<typename T, template<typename> class StorageStrategy>
+class LinkCounterListOwnershipStrategy: public StorageStrategy<T> {
+ public:
+  LinkCounterListOwnershipStrategy&
+  operator =(const LinkCounterListOwnershipStrategy&) {}
+  LinkCounterListOwnershipStrategy(const LinkCounterListOwnershipStrategy&) {}
+ protected:
+  StorageStrategy<T>::ptr;
+};
+
+template<typename T, template<typename> class StorageStrategy>
+class DelegateOwnershipStrategy: public StorageStrategy<T> {
+ protected:
+  void reassign(T* newPtr) {
+    if (newPtr != ptr) {
+      delete ptr;
+      ptr = newPtr;
+    }
+  }
+  
+  T* free() {
+    T* tmp = ptr;
+    ptr = NULL;
+    return tmp;
+  }
+ public:
+  DelegateOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {}
+  
+  DelegateOwnershipStrategy& operator =(DelegateOwnershipStrategy& newP) {
+    reassign(newP.free());
+    return *this;
+  }
+  
+  DelegateOwnershipStrategy(DelegateOwnershipStrategy& newP):
+      StorageStrategy<T>(newP.free()) {}
+ protected:
+  StorageStrategy<T>::ptr;
+};
+
+template<typename T,
+         template<typename> class StorageStrategy = SinglePtrStorageStrategy,
+         template<typename, template<typename> class > class
+         OwnershipStrategy = RestrictCopyOwnershipStrategy>
+class SmartPointer: public OwnershipStrategy<T, StorageStrategy> {
+ public:
+  typedef T element_type;
+  
+  SmartPointer(T* pointer) : OwnershipStrategy<T, StorageStrategy>(pointer) {}
+
+  T& operator *() const {
+    return *ptr;
+  }
+
+  T* operator ->() const {
+    return ptr;
+  }
+ private:
+  StorageStrategy<T>::ptr;
+};
+
+
+int main() {
+  SmartPointer<int> sm_ptr(new int);
+  *sm_ptr = 3;
+  cout << *sm_ptr << endl;
+  
+  SmartPointer<int, SinglePtrStorageStrategy, DelegateOwnershipStrategy>
+      sm_ptr_1(new int);
+  *sm_ptr_1 = 5;
+  cout << *sm_ptr_1 << endl;
+  {
+    SmartPointer<int, SinglePtrStorageStrategy, DelegateOwnershipStrategy>
+        sm_ptr_1_1(sm_ptr_1);
+    cout << *sm_ptr_1_1 << endl;
+    *sm_ptr_1_1 = -12;
+  }
+  // cout << *sm_ptr_1 << endl; // seg fault as I wished
+  SmartPointer<int, SinglePtrStorageStrategy, DelegateOwnershipStrategy>
+      sm_ptr_1_2(new int);
+  *sm_ptr_1_2 = 1;
+  sm_ptr_1 = sm_ptr_1_2;
+  cout << *sm_ptr_1 << endl;
+  
+  SmartPointer<int, SinglePtrStorageStrategy, LinkCounterOwnershipStrategy>
+      sm_ptr_2(new int);
+  *sm_ptr_2 = -9;
+  cout << *sm_ptr_2 << endl;
+  {
+    SmartPointer<int, SinglePtrStorageStrategy, LinkCounterOwnershipStrategy>
+        sm_ptr_2_1(sm_ptr_2);
+    cout << *sm_ptr_2_1 << endl;
+    *sm_ptr_2_1 = 12;
+  }
+  cout << *sm_ptr_2 << endl;
+  SmartPointer<int, SinglePtrStorageStrategy, LinkCounterOwnershipStrategy>
+      sm_ptr_2_2(new int);
+  *sm_ptr_2_2 = 13;
+  sm_ptr_2 = sm_ptr_2_2;
+  cout << *sm_ptr_2 << endl;
+  return 0;
+}

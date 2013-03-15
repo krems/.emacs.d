@@ -1,0 +1,175 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/home/krems/yandex/cpp/second_term/" . "first/")
+ ("/home/krems/yandex/algo/second_term/" . "first/")
+ ("/home/krems/Documents/TeX/" . "Stuff/")
+ ("/home/krems/sources/cpp/" . "stuff/")
+ ("/home/krems/sources/java/SCJP_project/" . "src/")
+ ("/home/krems/Documents/" . "FTIAN/")
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/" . "concrete/")
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/" . "hello/")
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/" . "ipccenter/")
+ ("/home/krems/sources/java/HelloWorldProject/src/" . "ru/")
+ ("/home/krems/sources/java/HelloWorldProject/" . "src/")
+ ("/home/krems/sources/java/" . "SCJP_project/")
+ ("/etc/" . "grub.d/")
+ ("/home/krems/yandex/cpp/" . "second_term/")
+ ("/home/krems/yandex/algo/" . "second_term/")
+ ("/home/krems/yandex/" . "raspred/")
+ ("/home/krems/.emacs.d/" . "krems/")
+ ("/home/" . "krems/")
+ ("/" . "home/")
+ ("/home/krems/sources/" . "cpp/")
+ ("/home/krems/" . "yandex/")
+ ("/home/krems/Documents/FTIAN/" . "Diploma/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/home/krems/yandex/raspred/"
+ "/home/krems/yandex/cpp/second_term/first/"
+ "/home/krems/yandex/cpp/second_term/"
+ "/home/krems/yandex/algo/second_term/first/"
+ "/home/krems/Documents/FTIAN/Diploma/"
+ "/home/krems/Documents/TeX/Stuff/"
+ "/home/krems/sources/cpp/stuff/"
+ "/home/krems/yandex/algo/second_term/"
+ "/home/krems/.emacs.d/krems/"
+ "/home/krems/sources/java/SCJP_project/src/"
+ "/home/krems/sources/java/"
+ "/home/krems/Documents/staff/"
+ "/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/concrete/"
+ "/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/abstr/"
+ "/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/abstract/"
+ "/etc/grub.d/"
+ "/home/krems/sources/"
+ "/home/krems/yandex/algo/fourth/"
+ "/home/krems/yandex/algo/third/"
+ "/home/krems/yandex/cpp/second/"
+ "/home/krems/yandex/algo/"
+ "/home/krems/"
+ "/home/krems/yandex/algo/second/"
+ "/home/krems/sources/cpp/"
+ "/home/krems/yandex/cpp/third/"
+ "/home/krems/yandex/cpp/third1/"
+ "/home/krems/yandex/algo/fith/"
+ "/home/krems/Documents/"
+ "/home/krems/yandex/cpp/staff/"
+ "/home/krems/Documents/MIPT/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "HelloWorld.cc"
+ "smart_pointers.cc"
+ "Holder"
+ "theory.tex"
+ "diploma.tex"
+ "test.tex"
+ "phyl.tex"
+ "seminar3_1.cc"
+ "seminar3.cc"
+ "lection3_1.cc"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/home/krems/yandex/raspred/" (20779 32295) "#lection1#" "HelloWorld.cc" "lection1" "HelloWorld" "./" "#HelloWorld.cc#" "../")
+
+ ("/home/krems/yandex/cpp/second_term/first/" (20802 57919) "smart_pointers.cc" "retvield/" "./" "smart_pointers" "../")
+
+ ("/home/krems/yandex/cpp/second_term/" (20800 42740) "lection3.cc" "singleton.cc" "singleton_simple.cc" "first/" "#homework1.cc#" "lection2.cc" "seminar3.cc" "get_problev.cc" "holder_ptr.cc" "get_problev" "singleton_simple" "seminar3_1.cc" "lection4" "./" "Holder" "lection3" "lection3_1.cc" "lection1.cc" "cowptr.cc" "../" "lection4.cc" "seminar2.cc")
+
+ ("/home/krems/yandex/algo/second_term/first/" (20800 36949) "theory.aux" "theory.tex" "theory.pdf" "./" "theory.out" "theory.log" "../")
+
+ ("/home/krems/Documents/FTIAN/" (20650 39466) "Nilsen-M-Chang-I-Kvantovye-vychisleniya-i-kvantovaya-informatsiya.djvu" "lections/" "quantum_computations_UFN.pdf" "г.rar" "./" "Diploma/" "Gmail.zip" "../")
+
+ ("/home/krems/" (20796 31420) ".macromedia/" ".Skype/" ".recentf" ".ssh/" ".gegl-0.0/" ".gphoto/" ".bash_history" ".gvfs/" ".local/" ".pulse/" "sources/" ".cache/" ".gimp-2.6/" "libgtest.a" ".Xauthority" "МТОУ-программа-2013.doc" "Templates/" ".emacs.desktop" "Downloads/" ".gnupg/" ".recently-used" ".kde/" ".directory" ".bashrc" ".dbus/" ".profile" "solutions.pdf" ".gtkrc-2.0-kde4" ".dmrc" ".Xdefaults" "problems.pdf" ".emacs.d/" ".lesshst" ".ido.last" "yandex/" ".last_codereview_email_address" ".texmf-var/" ".viminfo" ".pulse-cookie" ".config/" "Desktop/" ".adobe/" "gtest-1.6.0/" ".emacs.d_BU/" ".gstreamer-0.10/" ".gconf/" ".codereview_upload_cookies" "./" ".fontconfig/" ".emacs-places" "Public/" "Galaxy/" ".emacs_BU" ".eshell/" ".thumbnails/" "Videos/" "ololo.cc" "Documents/" "out.txt" ".IdeaIC12/" ".fonts/" "IdeaProjects/" "../" "gtest-all.o" ".xsession-errors" ".pki/" "Pictures/" ".xdvirc" ".fonts.conf" ".bash_logout" "Music/")
+
+ ("/home/krems/Documents/" (20795 7811) "MIPT/" ".emacs.desktop.lock" ".emacs.desktop" "12-15/" "TeX/" "./" "FTIAN/" "books/" "YANDEX/" "staff/" "../")
+
+ ("/home/krems/Documents/TeX/Stuff/" (20792 11143) "test.out" "test.tex" "test.pdf" "#test.tex#" "phyl.tex" "./" "phyl.log" "phyl.out" "phyl.pdf" "test.dvi" "test.aux" "../" "test.log" "phyl.aux")
+
+ ("/usr/share/texmf-texlive/tex/generic/oberdiek/" (20782 14055) "catchfile.sty" "se-koi8-r.def" "pdftexcmds.sty" "se-iso-8859-1.def" "uniquecounter.sty" "se-mac-centeuro.def" "se-utf16le.def" "se-pdfdoc.def" "se-ascii.def" "soulutf8.sty" "se-iso-8859-11.def" "setouterhbox.sty" "infwarerr.sty" "ifpdf.sty" "se-mac-cyrillic.def" "se-cp855.def" "se-mac-roman.def" "atbegshi.sty" "se-cp866.def" "se-iso-8859-8.def" "engord.sty" "se-iso-8859-7.def" "se-iso-8859-15.def" "se-utf32be.def" "se-cp865.def" "ltxcmds.sty" "magicnum.sty" "se-nextstep.def" "se-iso-8859-14.def" "kvsetkeys.sty" "bitset.sty" "se-iso-8859-4.def" "luatex-loader.sty" "ifvtex.sty" "pdfescape.sty" "luatex.sty" "etexcmds.sty" "pdfcrypt.sty" "se-iso-8859-5.def" "se-iso-8859-3.def" "se-iso-8859-2.def" "./" "telprint.sty" "se-cp850.def" "hyphsubst.sty" "se-iso-8859-13.def" "stringenc.sty" "bigintcalc.sty" "alphalph.sty" "intcalc.sty" "se-cp1250.def" "se-iso-8859-6.def" "se-iso-8859-9.def" "se-cp858.def" "se-iso-8859-16.def" "se-iso-8859-10.def" "se-cp1252.def" "iflang.sty" "se-utf32le.def" "../" "ifluatex.sty" "pdfcol.sty" "se-cp437.def" "se-utf8.def" "se-cp852.def" "se-cp1257.def" "se-cp1251.def" "se-dec-mcs.def")
+
+ ("/home/krems/yandex/algo/second_term/" (20788 63098) "first/" "./" "../")
+
+ ("/home/krems/.emacs.d/" (20783 54018) "places" "init.el" "elpa/" "custom.el" "package.el" "snippets/" "krems/" "README.md" "starter-kit.el" "tmp/" "auto-save-list/" ".gitmodules" "loaddefs.el" "starter-kit.org" "./" "eshell/" "backups/" "elpa-to-submit/" ".gitignore" "COPYING" "src/" "../" ".git/" "dominating-file.el")
+
+ ("/home/krems/.emacs.d/krems/" (20783 54016) "google-cpp-style.el" "appearance.el" "./" "../")
+
+ ("/home/krems/sources/cpp/stuff/" (20783 51704) "trash" "eratosfen.cc" "eratosfen" "#eratosfen.c#" "./" "eratosfen.c" "../" "#trash#")
+
+ ("/home/krems/Documents/TeX/" (20783 38153) "./" "Diploma/" "../" "Stuff/")
+
+ ("/home/krems/Documents/FTIAN/Diploma/" (20780 27309) "NV_обзор_Часть I.pdf" "Микроэлектроника41_163.pdf" "NV_обзор_Часть II.pdf" "Микроэлектроника41_104.pdf" "NV_обзор_Часть II.doc" "NV_обзор_Часть I.doc" "./" "NV_обзор_Часть III.doc" "../")
+
+ ("/home/krems/yandex/cpp/" (20775 32596) "./" "first_term/" "../" "second_term/")
+
+ ("/home/krems/yandex/" (20775 31762) "algo/" "cpp/" "upload.py" "raspred/" "./" "../")
+
+ ("/home/krems/yandex/algo/" (20775 32669) "./" "first_term/" "../" "second_term/")
+
+ ("/etc/grub.d/" (20775 37634) "30_os-prober" "05_debian_theme" "20_memtest86+" "40_custom" "20_linux_xen" "./" "30_uefi-firmware" "00_header" "README" "../" "41_custom" "10_linux")
+
+ ("/home/krems/sources/cpp/" (20775 47010) "merge.cc~" "gcd.cpp~" "firstTest.cc" "power.cpp" "bias.cpp~" "h.cpp" "someHash.cc" "comments_some.cc" "gtest-1.6.0.zip" "power.cpp~" "sample/" "bias.cpp" "21.o" "#test.cc#" "cubes.cc~" "comment.cc" "stuff/" "k" "priority.cpp~" "21.cc" "a.out" "priority.cpp" "nod.cpp" "./" "##test.cc##" "#nod.cpp#" "merge.cc" "gcd.cpp" "../" "cubes.cc" "comment.cc~")
+
+ ("/home/krems/sources/java/SCJP_project/" (20766 35055) "classes/" "./" "src/" "../")
+
+ ("/home/krems/sources/java/SCJP_project/src/" (20775 47274) "Implementizable.java" "Main.java" "Concrete.java" "Doable.java" "./" "Implementizable.class" "AbstrClass.java" "../")
+
+ ("/home/krems/sources/java/" (20766 34461) "ru/" "SCJP_project/" "HelloWorldProject/" "./" "BioSequences.java" "../")
+
+ ("/home/krems/Documents/staff/" (20766 34422) "кагоцил" "javaLinux.txt" "SCJP_test1.txt" "./" "../")
+
+ ("/home/krems/yandex/algo/second/" (20766 29751) ".hg/" "upload.py" "a.out" "./" "merge.cc" "../")
+
+ ("/home/krems/yandex/cpp/second/" (20766 29746) "com_filter.cc" "polynomial.cc" ".hg/" "upload.py" "a.out" "./" "../")
+
+ ("/home/krems/yandex/algo/third/" (20766 29742) "coins (1).cc~" ".hg/" "theory.txt~" "coins.cc" "upload.py" "coins.cc~" "a.out" "./" "coins (1).cc" "theory.txt" "../")
+
+ ("/home/krems/yandex/algo/fourth/" (20766 29737) "fixedSet.cc" ".hg/" "theory" "upload.py" "hashSet.o" "hashSet.cc~" "set.cc" "fixedSet.o" "a.out" "./" "hashSet.cc" "hashSet.0" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/abstr/" (20757 13764) "HelloWorldAbstract.java" "./" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/concrete/" (20766 30150) "HelloWorld.java" "En.java" "./" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/" (20757 11715) "concrete/" "./" "abstr/" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/hello/abstract/" (20757 10791) "HelloWorldAbstract.java" "./" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/ipccenter/" (20757 9986) "hello/" "./" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/ru/" (20757 9953) "ipccenter/" "./" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/src/" (20757 10213) "ru/" "./" "../")
+
+ ("/home/krems/sources/java/HelloWorldProject/" (20757 10213) "classes/" "./" "src/" "../")
+
+ ("/home/krems/Documents/MIPT/" (20698 40710) "Холоднов -программа экзамена 7 сем 2012 г.doc" "Otvety_na_voprosy_Kholodnova (1).docx" "Otvety_na_voprosy_Kholodnova.docx" "KV3.doc" "Холоднов (Х-Ш-Р) ФТП т30 в6 p1011-1025.pdf" "Литература.doc" "labs/" "Theorphys-part2.pdf" "english/" "Хол- контр вопр - полн набор (7 сем 12 г).doc" "./" "Эл. св-ва/" "Theorphys-part1.pdf" "qm2_95x.xls" "18.zip" "Задания на экзамен.doc" "../" "Эл. св-ва.rar")
+
+ ("/home/krems/sources/" (20696 46130) "#R.R#" "java/" "cpp/" "./" "../")
+
+ ("/etc/" (20704 2800) "cron.d/" "gtk-3.0/" "papersize" "blkid.conf" "pptpd.conf" "NetworkManager/" "ld.so.conf" "vim/" "update-notifier/" "kernel/" "smi.conf" "fonts/" "motd" "libao.conf" "skel/" "update-manager/" "ldap/" "ghostscript/" "bonobo-activation/" "pam.conf" "dhcp3/" "emacs/" "init.d/" "grub.d/" "odbcinst.ini" "dkms/" "mysql/" "icedtea-web/" "mercurial/" "mime.types" "insserv.conf" "perl/" "ifplugd/" "rcS.d/" "bluetooth/" "usb_modeswitch.conf" "hostname" "brltty.conf" "emacs23/" "brlapi.key" "securetty" "depmod.d/" "timezone" "bash.bashrc" "subversion/" "cron.weekly/" "magic" "ufw/" "deluser.conf" "modprobe.d/" "kubuntu-default-settings/" "sudoers.d/" "at.deny" "modules" "foomatic/" "wildmidi/" "vtrgb" "cupshelpers/" "rc2.d/" "group" "gnome-app-install/" "python2.7/" "xml/" "java-6-openjdk/" ".pwd.lock" "apparmor/" "ssh/" "libreoffice/" "sysctl.conf" "xdg/" "kde4rc" "libpaper.d/" "gconf/" "dhcp/" "blkid.tab" "netscsid.conf" "sensors.d/" "rc0.d/" "magic.mime" "ODBCDataSources/" "pcmcia/" "debconf.conf" "issue.net" "kerneloops.conf" "rc.local" "hp/" "apport/" "akonadi/" "gshadow-" "insserv.conf.d/" "ssl/" "updatedb.conf" "gnome-vfs-2.0/" "kernel-img.conf" "issue" "gnome/" "rsyslog.d/" "nsswitch.conf" "update-motd.d/" "pkcs11/" "rc3.d/" "avahi/" "calendar/" "nanorc" "shadow-" "others-menu/" "locale.alias" "rc5.d/" "manpath.config" "security/" "resolvconf/" "lsb-release" "snmp/" "java-7-openjdk/" "dictionaries-common/" "rc1.d/" "groff/" "vlc/" "mtools.conf" "dpkg/" "apm/" "newt/" "popularity-contest.conf" "fuse.conf" "init/" "default/" "kismet/" "ca-certificates/" "wireshark/" "mailcap.order" "mke2fs.conf" "dbus-1/" "kde4/" "polkit-1/" "ksysguarddrc" "kbd/" "rsyslog.conf" "obex-data-server/" "wpa_supplicant/" "brltty/" "ca-certificates.conf" "python/" "pm/" "sensors3.conf" "lsb-base-logging.sh" "ImageMagick/" "protocols" "firefox/" "lynx-cur/" "ucf.conf" "sudoers" "chatscripts/" "rmt" "bash_completion.d/" "cron.daily/" "apt/" "cups/" "mc/" "initramfs-tools/" "profile" "group-" "host.conf" "gai.conf" "zsh_command_not_found" "passwd-" "mailcap" "shadow" "fstab" "inputrc" "clutter-imcontext/" "ConsoleKit/" "hosts.deny" "pulse/" "ppp/" "lsb-base/" "passwd" "hosts.allow" "alternatives/" "udev/" "samba/" "odbc.ini" "acpi/" "debian_version" "environment" "iproute2/" "cron.monthly/" "openal/" "esound/" "ld.so.cache" "logrotate.d/" "crontab" "insserv/" "legal" "gshadow" "fstab.d/" "bindresvport.blacklist" "hosts" "resolv.conf" "colord.conf" "sane.d/" "localtime" "opt/" "libnl-3/" "rc4.d/" "services" "cron.hourly/" "systemd/" "logrotate.conf" "timidity/" ".java/" "hdparm.conf" "pnm2ppa.conf" "ts.conf" "ltrace.conf" "anacrontab" "pam.d/" "logcheck/" "usb_modeswitch.d/" "wodim.conf" "wgetrc" "sgml/" "network/" "profile.d/" "terminfo/" "rc6.d/" "gtk-2.0/" "mtab" "sound/" "shells" "X11/" "rpc" "login.defs" "apparmor.d/" "console-setup/" "sysctl.d/" "gimp/" "adjtime" "adduser.conf" "ld.so.conf.d/" "UPower/" "networks" "bash_completion" "gdb/" "../" "./")
+
+ ("/etc/default/" (20574 12528) "cron" "acpi-support" "devpts" "halt" "dbus" "rsyslog" "kdm.d/" "gpsd" "ufw" "keyboard" "crda" "ntpdate" "pulseaudio" "kerneloops" "acpid" "apport" "useradd" "locale" "ntfs-3g" "saned" "irqbalance" "brltty" "cups" "./" "rcS" "rsync" "nss" "google-chrome" "bootlogd" "avahi-daemon" "alsa" "../" "grub" "console-setup" "cacerts" "cryptdisks")
+
+ ("/home/krems/yandex/cpp/staff/" (20671 32240) "lection.cc~" "class_complex.cc~" "3borody_lection.cc" "last_lection2.cc" "some_class_vector.cc~" "last_seminar_2.cc" "1_sem.cc~" "split.cc" "seminar_boroda_permutation.cc" "summary_for_second_task" "3borody_lection2.cc" "last_lection.cc" "word_pointer.cc~" "class_complex.cc" "seminar_boroda_permutation.cc~" "matrix.cc~" "seminar_boroda_unique.cc~" "last_seminar_1.cc" "figure.cc" "1.cc" "some_class_vector.cc" "bibliograph.cc" "meta_programming_example.cc" "sample_class.cc~" "word_pointer.cc" "a.out" "lection.cc" "./" "seminar_boroda.c" "1_sem.cc" "meta_programming_example.cc~" "formatter.cc" "split.cc~" "seminar_boroda_unique.cc" "sample_class.cc" "borodaBoroda.cc" "matrix.cc" "../" "seminar_boroda.c~" "boroda2.cc")
+
+ ("/home/krems/yandex/algo/fith/" (20672 42387) "./" "theory.txt" "tree.cc" "../")
+
+ ("/home/krems/yandex/cpp/third1/" (20674 10738) "code_for_review.cc" ".hg/" "upload.py" "a.out" "./" "../" "code.cpp")
+
+ ("/home/krems/yandex/cpp/third/" (20674 19071) "_lambda.cc" ".hg/" ".emacs.desktop" "upload.py" "lambda.cc" "a.out" "./" "metaScalar.cc" "../")
+
+ ("//" (20574 12538) "home/" "media/" "var/" "initrd.img" "vmlinuz.old" "sys/" "cdrom/" "sbin/" "dev/" "boot/" "srv/" "bin/" "lib32/" "tmp/" "usr/" "root/" "lib64/" "run/" ".config/" "./" "initrd.img.old" "mnt/" "opt/" "lib/" "selinux/" "vmlinuz" "etc/" "../" "proc/" "lost+found/")
+
+ ("/home/krems/Templates/" (20622 58346) "./" "Лекция 4.ppt" "../")
+
+ ("/home/" (20571 21068) "krems/" ".directory" "./" "../")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

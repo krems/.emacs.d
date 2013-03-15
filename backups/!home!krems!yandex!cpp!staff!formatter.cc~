@@ -1,0 +1,71 @@
+#include <iostream>
+#include <vector>
+
+using std::cout;
+using std::endl;
+using std::vector;
+
+class Formatter {
+ protected:
+  vector<String> text;
+  size_t cur_line_num;
+ public:
+  virtual Formatter() {
+    text.push_back("Some text");
+    cur_line_num = 0;
+  }
+ protected:
+  virtual void printHeader() const {
+    cout << "Header" << endl;
+  }
+  virtual void printTitle() const {
+    cout << "Title" << endl;
+  }
+  virtual bool eof() const {
+    if (cur_line_num == text.size()) {
+      return true;
+    }
+    return false;
+  }
+  virtual void printParagraph() const {
+    for (size_t i = 0; i < text.size(); ++i) {
+      cout << text[i] << endl;
+      ++cur_line_number;
+    }
+  }
+  virtual void printFooter() const {
+    cout << "blah-blah footer" << endl;
+  }
+  virtual ~Formatter() const;
+};
+
+class PlainTextFormatter: public Formatter {
+  PlainTextFormatter() {
+    text.push_back("Plain text");
+    text.push_back("second line");
+  }
+  void printFooter() const {
+    cout << "Plain text footer" << endl;
+  }
+};
+
+class HtmlFormatter: public Formatter {
+
+}
+
+void printDocument(Formatter& f) {
+  f.printHeader();
+  f.printTitle();
+  while (!f.eof()) {
+    f.printParagraoh();
+  }
+  f.printFooter();
+}
+
+int main() {
+  Formatter* doc;
+  doc = &(new PlainTextFormatter);
+  printDocument(*doc);
+  delete doc;
+  return 0;
+}

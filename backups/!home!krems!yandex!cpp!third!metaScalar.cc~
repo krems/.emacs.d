@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+  
+template <typename Iter, size_t i, size_t N>
+struct scalar_product_helper {
+  static long long scalarProduct(Iter a, Iter b) {
+    return  *(a + i) * *(b + i) +
+        scalar_product_helper<Iter, i - 1, N>
+        ::scalarProduct(a, b);
+  }
+};
+
+template <typename Iter, size_t N>
+struct scalar_product_helper<Iter, 0, N> {
+  static long long scalarProduct(Iter a, Iter b) {
+    return  *a * *b;
+  }
+};
+
+template <typename Iter, size_t N>
+struct scalar_product {
+  static const long long Result(Iter a, Iter b) {
+    return scalar_product_helper<Iter, N - 1, N>
+        ::scalarProduct(a, b);
+  }
+};
+
+int main() {
+  // static std::vector<int> a;
+  // a.push_back(1);
+  // a.push_back(2);
+  // a.push_back(3);
+  // static std::vector<int> b;
+  // b.push_back(3);
+  // b.push_back(2);
+  // b.push_back(1);
+  // static std::vector<int>::iterator a_it = a.begin();
+  // static std::vector<int>::iterator b_it = b.begin();
+  // std::cout << scalar_product<std::vector<int>::iterator,
+  //                             a_it, b_it, 3>::Result <<
+  //                               std::endl;
+  static int a[] = {1, 2, 3};
+  static int b[] = {3, 2, 1};
+  std::cout << scalar_product<int*, 3>::Result(a, b) << std::endl;
+  return 0;
+}

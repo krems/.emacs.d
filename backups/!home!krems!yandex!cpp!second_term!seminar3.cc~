@@ -1,0 +1,47 @@
+#include <iostream>
+#include <stdlib.h>
+
+#define SIZE 5
+
+template<typename T>
+class MyStack {
+  static T buffer[SIZE];
+  static size_t cur_pos;
+ public:
+
+  void push_back(const T& in) {
+    if (cur_pos == SIZE) {
+      throw "Bad";
+    }
+    buffer[cur_pos] = in;
+    ++cur_pos;
+  }
+
+  void pop_back() {
+    if (cur_pos == 0) {
+      return;
+    }
+    --cur_pos;
+  }
+
+  T top() const {
+    if (cur_pos == 0) {
+      return NULL;
+    }
+    return buffer[cur_pos - 1];
+  }
+};
+
+MyStack<T>::cur_pos = 0;
+// template<typename T>
+// void initBuffer() {
+//   MyStack<T>::buffer
+// }
+  
+int main() {
+  MyStack<int> a;
+  a.push_back(4);
+  std::cout << a.top() << std::endl;
+  a.push_back();
+  retur 0;
+}

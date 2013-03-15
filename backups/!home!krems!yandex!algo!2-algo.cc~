@@ -1,0 +1,85 @@
+// Author: Valeriy Ovchinnikov
+
+// long comment line 11111111111111111111111111111111111111111111111111111111111111111111111
+#include <iostream>
+#include <vector>
+
+using std::vector;
+
+// the result of merging will be put into the left vector, overwriting
+// old left vector values
+void merge(vector<int>& left_vector,
+           const vector<int>& right_vector) {
+  vector<int> sorted_vector;
+  vector<int>::const_iterator left = left_vector.begin();
+  vector<int>::const_iterator right = right_vector.begin();
+  while (left != left_vector.end() &&
+         right != right_vector.end())  {
+    if (*left > *right) {
+      sorted_vector.push_back(*right);
+      ++right;
+    } else {
+      sorted_vector.push_back(*left);
+      ++left;
+    }
+  }
+  if (right == right_vector.end()) {
+    while (left != left_vector.end()) {
+      sorted_vector.push_back(*left);
+      ++left;
+    }
+  }
+  if (left == left_vector.end()) {
+    while (right != right_vector.end()) {
+     sorted_vector.push_back(*right);
+      ++right;
+    }
+  }
+  std::swap(sorted_vector, left_vector);
+}
+
+void merge_sequences(vector<vector<int> >& sequences) {
+  // count of sequnces we work with
+  size_t seq_count = sequences.size();
+  while (seq_count > 1) {
+    // merging all sub_sequences
+    int offset = 0;
+    if (seq_count % 2 == 1) {
+      // last sub_sequence will be kept for next time
+      offset = -1;
+    }
+    for (size_t i = 0; i < seq_count + offset; ++i) {
+      merge(sequences[i], sequences[i + 1]);
+      std::swap(sequences[i + 1], sequences[--seq_count]);
+    }
+  } 
+}
+
+vector<vector<int> > read_input() {
+  int seq_length, seq_number;
+  std::cin >> seq_number >> seq_length;
+  vector<vector<int> >
+      sequences(seq_number, vector<int>(seq_length));
+  for (size_t line = 0; line < seq_number; ++line) {
+    for (size_t number = 0; number < seq_length; ++number) {
+      std::cin >> sequences[line][number];
+    }
+  }
+  return sequences;
+}
+
+std::ostream& operator << (std::ostream& os,
+                           const vector<int>& sequence) {
+  for (size_t j = 0; j < sequence.size(); ++j) {
+    os << sequence[j] << " ";
+  }
+  os << std::endl;
+  return os;
+}
+
+int main() {
+  vector<vector<int> > sequences(read_input());
+  merge_sequences(sequences);
+  std::cout << sequences[0];
+  return 0;
+}

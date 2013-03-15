@@ -1,0 +1,59 @@
+// Author: Valeriy Ovchinnikov
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+
+using std::vector;
+using std::cin;
+using std::cout;
+using std::endl;
+
+// a_coeffs, b_coeffs - coeffs of second-layer hash functions
+vector<int> a_coeffs;
+vector<int> b_coeffs;
+// sl_sets_powers consists of powers of every second-layer set
+vector<size_t> sl_sets_powers;
+// fl_content carring info about what numbers are in each cell 
+// of first-layer set so it indicates first-layer  collisions
+vector<vector<int> > fl_content;
+
+void Set_coeffs(int* lhs, int* rhs) {
+  *lhs = rand();
+  *rhs = rand();
+}
+
+size_t Second_layer_hash(int number, size_t table_number) const {
+  size_t hash_code = ((a_coeffs.at(table_number) * number
+                       + b_coeffs.at(table_number)) % PRIME)
+    % sl_sets_powers.at(table_number);
+  return hash_code;
+}
+
+void Make_sl_hash_function(size_t index) {
+  Set_coeffs(&a_coeffs[index], &b_coeffs[index]);
+  vector<bool> sl_table(sl_sets_powers[index], false);
+  for (vector<int>::const_iterator it = 
+         fl_content[index].begin();
+       it != fl_content[index].end(); ++it) {
+    size_t sl_hash = Second_layer_hash(*it, index);
+    if (sl_table[sl_hash]) {
+      Make_sl_hash_function(index);
+      return;
+    } else {
+      sl_table[sl_hash] = true;
+    }
+  }
+}
+
+int main() {
+  srand(5);
+  fl_content.push_back(vector<int>(2));
+  fl_content[0] = 0;
+  fl_content[1] = 100;
+  sl_sets_powers.push_back(4);
+  a_coeffs.resize(1, 0);
+  b_coeffs.resize(1, 0);
+  Make_sl_hash_function(0);
+  return 0;
+}

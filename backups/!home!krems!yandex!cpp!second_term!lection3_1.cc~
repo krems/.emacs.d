@@ -1,0 +1,27 @@
+
+
+class C {
+ public:
+  static size_t memory;
+
+  static void * operator new (size_t sz) {
+    void* p = ::operator new(sz);
+    memory += sz;
+    return p;
+  }
+
+  static void operator delete(void * p, size_t sz) {
+    ::operator delete(p);
+    memory -= sz;
+  }
+};
+
+size_t C::memory = 0;
+
+int main() {
+  C* a = new C;
+  std::cout << a::memory << std::endl;
+  delete C;
+  std::cout << a::memory << std::endl;
+  return 0;
+}

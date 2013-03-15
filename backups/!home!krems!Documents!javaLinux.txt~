@@ -1,0 +1,152 @@
+При работе с Java под ОС Linux могут возникнуть проблемы с
+импортами. Это перевод поста, найденного мной на просторах, в котором
+на простом примере разобрано решение данной проблемы. Например мне
+нужно воспользоваться:
+
+Quote
+AsteriskConnector/src/Asterisk/Main.java:4: package org.apache.axis does not exist
+import org.apache.axis.AxisFault;
+
+
+Использование билд-тулов(ант, мавен) может оказаться сложным решением,
+для небольшого проекта. Можно воспользоваться Makefile'ом для
+компиляции. Но я покажу просто набор команд(который, естественно можно
+загнать в Makefile).
+
+Предположим, у меня есть два таких файла в директории рабочего стола:
+
+Main.java
+
+1
+import test.Foo;
+2
+public class Main {
+3
+     public static void main(String[] args) {
+4
+         
+5
+     }
+6
+}
+
+
+Foo.java
+
+1
+package test;
+2
+class Foo{}
+
+
+
+Я выполняю следующие команды в консоли('#' означает начало строкового комментария):
+
+1
+javac Foo.java # компилируем Foo.java
+2
+mkdir test # создаем директорию 'test'
+3
+cp Foo.class test # копируем 'Foo.class' в директорию 'test'
+
+
+Вот так выглядит структура моей директории сейчас:
+
+1
+|<dir name>| означает, что это директория
+2
+ 
+3
+ 
+4
+                 |Desktop|
+5
+          /          |           \
+6
+      Main.java    |test|      Foo.java & Foo.class
+7
+                     |
+8
+                    Foo.class
+
+
+Теперь, я создам jar-архив с Foo.class и положу его в другую
+директорию. Это равносильно скачиванию axis.jar, в котором находится
+org.apache.axis.AxisFault. Я кладу test.jar в директорию AnotherDir,
+чтобы отразить тот факт, что axis.jar может находиться в другой папке,
+нежели AsteriskConnector/src/Asterisk/Main.java.
+
+1
+jar -cf test.jar test # создаем 'test' jar-архив
+2
+mkdir AnotherDir
+3
+cp test.jar AnotherDir
+
+
+Теперь структура моей директории выглядит так:
+
+01
+|<dir name>| denotes a directory
+02
+ 
+03
+ 
+04
+                 |Desktop|
+05
+          /          |           \
+06
+      Main.java    |test|      |AnotherDir|
+07
+                                   |
+08
+                                test.jar
+09
+                                   |
+10
+                                 |test|
+11
+                                   |
+12
+                                 Foo.class
+
+
+Я хочу скомпилировать Main.java, который импортит test.Foo, но
+test.Foo находится в test.jar, которая лежит в другой директории.
+
+Итак, компилирую Main.java:
+
+1
+javac Main.java
+
+
+И javac выбрасывает ошибку:
+Quote
+Main.java:1: error: package test does not exist
+import test.Foo;
+^
+1 error
+
+
+Это произошло потому, что я не включил test.jar в мой
+class_path. Верная команда была бы:
+
+1
+javac -cp AnotherDir/test.jar Main.java
+
+
+Теперь все работает!
+
+Если вам нужно включить несколько файлов, то команды будут выглядить
+так:
+В Linux:
+
+1
+javac -cp AnotherDir/test.jar:AnotherDir/test2.jar:AnotherDir/test3.jar Main.java
+
+
+В Windows:
+
+1
+javac -cp AnotherDir\test.jar;AnotherDir\test2.jar;AnotherDir\test3.jar Main.java

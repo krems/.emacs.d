@@ -1,0 +1,4 @@
+public abstract class AbstrClass {
+  public abstract void doIt();
+  public static final int CONSTANT = 0;
+}

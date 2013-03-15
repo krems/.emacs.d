@@ -1,0 +1,88 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using std::cout;
+using std::endl;
+using std::vector;
+using std::string;
+
+class Author {
+  string name;
+  string work_place;
+  vector<string> publications;
+ public:
+  Author(string name): name(n) {};
+  void setWorkPlace(string wp) {
+    work_place(wp);
+  }
+  void addPublication(string pub) {
+    publications.push_back(pub);
+  }
+  string getName() const {
+    return name;
+  }
+  string getWorkPlace() const {
+    return work_place;
+  }
+  const vector<string>& getPublications() const {
+    retun publications;
+  }
+};
+
+class Publication {
+ protected:
+  vector<Author> authors;
+  string title;
+  size_t p_year;
+ public:
+  Publication(vector<Author> ath,
+              string ttl,
+              size_t year) {
+    authors = ath;
+    title = ttl;
+    p_year = year;
+  }
+
+  virtual void printInfo() {
+    cout << "Authors:" << endl;
+    for (size_t i = 0; i < authors.size(); ++i) {
+      cout << authors[i] << endl;
+    }
+    cout << "Title:" << endl;
+    cout << "\"" << title << "\"" << endl;
+    cout << "Publish year:" << p_year << endl;
+  }
+
+  virtual void addAuthor(Author a) {
+    authors.push_back(a);
+  }
+  
+  virtual ~Publication() {};
+};
+
+class Article: public Publication {
+ protected:
+  string magazine;
+ public:
+  void printInfo() const {
+};
+
+class Book: public Publication {
+ protected:
+  string name;
+};
+
+class Abstract: public Publication {
+ protected:
+  int rate;
+};
+
+class Internet: public Publication {
+ protected:
+  string url;
+};
+
+int main() {
+  return 0;
+}

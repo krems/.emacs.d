@@ -1,0 +1,51 @@
+// Author: Valeriy Ovchinnikov
+
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define T int
+#define MAX_SIZE 6250001
+
+// Every bit is a number in a row from 1 to top_number. If bit is up(=1) then
+// It is removed(as a non-prime number)
+// T num_row[MAX_SIZE];
+
+T get_mask(size_t pos) {
+  return 1 << pos;
+}
+
+int main() {
+  size_t bitrate = 8 * sizeof(T);
+  int top_number;
+  scanf("%d", &top_number); // U should add check value here
+  T* num_row = malloc(top_number / 8 + sizeof(T));
+  memset(num_row, 0, top_number / 8 + sizeof(T));
+  /* for (size_t i = 0; i <= top_number / bitrate; ++i) { */
+  /*   num_row[i] = 0; */
+  /* } */
+  T primes_number = top_number - 1;
+  for (int i = 2; i <= sqrt((double)top_number); ++i) {
+    T mask = get_mask(i % bitrate);
+    if (!(num_row[i / bitrate] & mask)) { // If not already removed
+      /* ++primes_number; // Then it's prime */
+      for (int j = 2 * i; j <= top_number; j += i) { // Go remove 'em
+        T mask = get_mask(j % bitrate);
+        if (!(num_row[j / bitrate] & mask)) {
+          --primes_number;
+          num_row[j / bitrate] |= mask;
+        }
+      }
+    }
+  }
+  /* for (int i = sqrt((double)top_number); i <= top_number; ++i) { */
+  /*   T mask = get_mask(i % bitrate); */
+  /*   if (!(num_row[i / bitrate] & mask)) { */
+  /*       ++primes_number; */
+  /*   } */
+  /* } */
+  printf("\n%d\n", primes_number);
+  free(num_row);
+  return 0;
+}

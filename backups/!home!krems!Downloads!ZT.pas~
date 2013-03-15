@@ -1,0 +1,40 @@
+﻿var x ,y:array[1..100]of longint ;
+i , n  , s1 ,s , g1 , g , v: integer ;
+
+function NOD(a,b:longint):longint;
+begin
+if a<>0 then NOD:=NOD(b mod a,a) else NOD:= b;
+end;// НОД РЕКУРСИЕЙ
+
+function zt(x1 ,y1 , x2 , y2: longint):longint;
+begin
+if NOD(x1-x2 , y1-y2)>0 then
+zt:=NOD(x1-x2 , y1-y2)+1
+else  zt:=-NOD(x1-x2 , y1-y2)+1 ;
+end ;// КОЛ-ВО ТОЧЕК С ЦЕЛЫМИ КООРДИНАТАМИ НА ОТРЕЗКЕ 
+
+begin
+read(n) ;
+for i:=1 to n do begin
+read(x[i] , y[i]) ; end ;// ВВОДИМ КООРДИНАТЫ ОБОЛОЧКИ
+
+s:=0;
+g:=0;
+x[n+1]:=x[1] ;
+y[n+1]:=y[1] ; // ОБНУЛЯЕМ СУММЫ . ЗАМЫКАЕМ ОБОЛОЧКУ
+
+for i:=1 to n do begin
+s1:=x[i]*y[i+1]-y[i]*x[i+1] ;
+s:=s+s1 ; end;
+if s<0 then s:=-s
+else s:=s ;// УДВОЕННАЯ ПЛОЩАДЬ ПЕСВДОСКАЛЯРНЫМ ПРОИЗВЕДЕНИЕМ 
+
+for i:=1 to n do begin
+g1:=zt(x[i] , y[i]  , x[i+1] , y[i+1] ) ;
+g:=g+g1 ; end ; g:=g-n ;//НАХОДИМ ЦЕЛЫЕ ТОЧКИ НА ГРАНИЦЕ ОБОЛОЧКИ , ВЫЧИТАЕМ КОЛ-ВО ВЕРШИН ОНИ ПОСЧИТАНЫ ДВАЖДЫ
+
+v:=(s+2-g) div 2 ;// фОРМУЛА ПИКА
+write(v) ;
+end.
+
+

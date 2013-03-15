@@ -1,0 +1,33 @@
+#include <iostream>
+
+struct C {
+  static void f(int x) {
+    std::cout << "f(" <<x << ")\n";
+  }
+  void h(int x) {
+    std::cout << "h(" <<x << ")\n";
+  }
+};
+
+void f(int x) {
+  std::cout << "f(" <<x << ")\n";
+}
+
+void g(int x) {
+  std::cout << "g(" <<x << ")\n";
+}
+
+int main() {
+  void (*p) (int);
+  p = f;
+  p(42);
+  p = g;
+  p(24);
+
+  void (C::*q) (int);
+  q = C::h;
+  q(100);
+  p = C::e;
+  p(111);
+  return 0;
+}
