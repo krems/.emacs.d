@@ -24,6 +24,8 @@ Emacs Starter Kit рассчитан на работу с Emacs от 22-ой в�
     rm -Rv ~/.emacs.d
     git clone http://github.com/krems/.emacs.d.git ~/.emacs.d
    
+Переименуйте папку krems в имя пользователя, кому пренадлежит .emacs.d.
+Например, если ваш .emacs.d находится в /home/user, то переименуйте папку krems в user.
 Затем установите
 [git-сабмодули](http://www.kernel.org/pub/software/scm/git/docs/user-manual.html#submodules)
 сторонних пакетов
