@@ -1,3 +1,4 @@
+// Author: Valeriy Ovchinnikov
 #include <iostream>
 
 using std::cout;
@@ -5,11 +6,12 @@ using std::cin;
 using std::endl;
 
 template<typename T>
-struct ArrayStorageStrategy {
-  ArrayStorageStrategy(T* pointer) : ptr(pointer) {}
+class ArrayStorageStrategy {
+ public:
+  ArrayStorageStrategy(T* pointer): ptr(pointer) {}
   
   virtual ~ArrayStorageStrategy() {
-    delete[] ptr;
+    deletePtr();
   }
 
   T operator [] (size_t pos) const {
@@ -19,23 +21,36 @@ struct ArrayStorageStrategy {
   T& operator [] (size_t pos) {
     return *(ptr + pos);
   }
+
+ protected:
+  void deletePtr() {
+    delete[] ptr;
+  }
   
  protected:
   T* ptr;
 };
 
 template<typename T>
-struct SinglePtrStorageStrategy {
-  SinglePtrStorageStrategy(T* pointer) : ptr(pointer) {}
+class SinglePtrStorageStrategy {
+ public:
+  SinglePtrStorageStrategy(T* pointer): ptr(pointer) {}
   
   virtual ~SinglePtrStorageStrategy() {
-    delete ptr;
+    deletePtr();
   }
 
+ protected:
+  void deletePtr() {
+    delete ptr;
+  }
+  
  protected:
   T* ptr;
 };
 
+// Ld fail on copy constructor or operator = usage try
+// Attention! Do not use with stl containers!
 template<typename T, template<typename> class StorageStrategy>
 class RestrictCopyOwnershipStrategy: public StorageStrategy<T> {
  public:
@@ -46,6 +61,7 @@ class RestrictCopyOwnershipStrategy: public StorageStrategy<T> {
   RestrictCopyOwnershipStrategy(const RestrictCopyOwnershipStrategy&);
 };
 
+// Helps to organize ref counting
 struct ReferenceCounter {
  private:
   size_t count;
@@ -59,22 +75,23 @@ struct ReferenceCounter {
   }
 };
 
+// Counting in external shared structure
 template<typename T, template<typename> class StorageStrategy>
-class LinkCounterOwnershipStrategy: public StorageStrategy<T> {
+class RefCounterOwnershipStrategy: public StorageStrategy<T> {
  public:
-  LinkCounterOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {
+  RefCounterOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {
     counter = new ReferenceCounter;
     counter->addReference();
   }
   
-  LinkCounterOwnershipStrategy&
-  operator =(const LinkCounterOwnershipStrategy& other) {
+  RefCounterOwnershipStrategy& operator =(const RefCounterOwnershipStrategy&
+                                          other) {
     if (&other == this) {
       return *this;
     }
     if (counter->release() == 0) {
       delete counter;
-      delete ptr; // and what if [] ?
+      StorageStrategy<T>::deletePtr();
     }
     counter = other.counter;
     counter->addReference();
@@ -82,13 +99,13 @@ class LinkCounterOwnershipStrategy: public StorageStrategy<T> {
     return *this;    
   }
   
-  LinkCounterOwnershipStrategy(const LinkCounterOwnershipStrategy& other):
+  RefCounterOwnershipStrategy(const RefCounterOwnershipStrategy& other):
       StorageStrategy<T>(other.ptr) {
     counter = other.counter;
     counter->addReference();
   }
 
-  ~LinkCounterOwnershipStrategy() {
+  ~RefCounterOwnershipStrategy() {
     if (counter->release() != 0) {
       ptr = NULL;
       counter = NULL;
@@ -101,16 +118,66 @@ class LinkCounterOwnershipStrategy: public StorageStrategy<T> {
   ReferenceCounter* counter;
 };
 
-template<typename T, template<typename> class StorageStrategy>
-class LinkCounterListOwnershipStrategy: public StorageStrategy<T> {
- public:
-  LinkCounterListOwnershipStrategy&
-  operator =(const LinkCounterListOwnershipStrategy&) {}
-  LinkCounterListOwnershipStrategy(const LinkCounterListOwnershipStrategy&) {}
- protected:
-  StorageStrategy<T>::ptr;
+// Helps to organize LinkedList
+struct Node {
+  Node* next;
+  Node* prev;
 };
 
+// Circular references
+template<typename T, template<typename> class StorageStrategy>
+class LinkedRefOwnershipStrategy: public StorageStrategy<T> {
+ public:
+  LinkedRefOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {
+    node = new Node;
+    node->next = node;
+    node->prev = node;
+  }
+  
+  LinkedRefOwnershipStrategy& operator =(const LinkedRefOwnershipStrategy&
+                                         other) {
+    if (&other == this) {
+      return *this;
+    }
+    // Old ref ring
+    if (node->next != node) {
+      (node->prev)->next = node->next;
+      (node->next)->prev = node->prev;
+    } else {
+      StorageStrategy<T>::deletePtr();
+    }
+    // New ref ring
+    node->next = other.node;
+    node->prev = (other.node)->prev;
+    (other.node)->prev = node;
+    (node->prev)->next = node;
+    ptr = other.ptr;
+  }
+  
+  LinkedRefOwnershipStrategy(const LinkedRefOwnershipStrategy& other):
+      StorageStrategy<T>(other.ptr) {
+    node = new Node;
+    node->next = other.node;
+    node->prev = (other.node)->prev;
+    (other.node)->prev = node;
+    (node->prev)->next = node;
+  }
+
+  ~LinkedRefOwnershipStrategy() {
+    if (node->next != node) {
+      (node->prev)->next = node->next;
+      (node->next)->prev = node->prev;
+      ptr = NULL;
+    }
+    delete node;
+  }
+ protected:
+  StorageStrategy<T>::ptr;
+  Node* node;
+};
+
+// auto_ptr simplier version
+//Attention! Do not use with stl containers! Do not pass by value!
 template<typename T, template<typename> class StorageStrategy>
 class DelegateOwnershipStrategy: public StorageStrategy<T> {
  protected:
@@ -129,13 +196,13 @@ class DelegateOwnershipStrategy: public StorageStrategy<T> {
  public:
   DelegateOwnershipStrategy(T* pointer): StorageStrategy<T>(pointer) {}
   
-  DelegateOwnershipStrategy& operator =(DelegateOwnershipStrategy& newP) {
-    reassign(newP.free());
+  DelegateOwnershipStrategy& operator =(DelegateOwnershipStrategy& other) {
+    reassign(other.free());
     return *this;
   }
   
-  DelegateOwnershipStrategy(DelegateOwnershipStrategy& newP):
-      StorageStrategy<T>(newP.free()) {}
+  DelegateOwnershipStrategy(DelegateOwnershipStrategy& other):
+      StorageStrategy<T>(other.free()) {}
  protected:
   StorageStrategy<T>::ptr;
 };
@@ -146,9 +213,8 @@ template<typename T,
          OwnershipStrategy = RestrictCopyOwnershipStrategy>
 class SmartPointer: public OwnershipStrategy<T, StorageStrategy> {
  public:
-  typedef T element_type;
-  
-  SmartPointer(T* pointer) : OwnershipStrategy<T, StorageStrategy>(pointer) {}
+  explicit
+  SmartPointer(T* pointer): OwnershipStrategy<T, StorageStrategy>(pointer) {}
 
   T& operator *() const {
     return *ptr;
@@ -157,10 +223,11 @@ class SmartPointer: public OwnershipStrategy<T, StorageStrategy> {
   T* operator ->() const {
     return ptr;
   }
+
+  typedef T element_type;
  private:
   StorageStrategy<T>::ptr;
 };
-
 
 int main() {
   SmartPointer<int> sm_ptr(new int);
@@ -184,21 +251,46 @@ int main() {
   sm_ptr_1 = sm_ptr_1_2;
   cout << *sm_ptr_1 << endl;
   
-  SmartPointer<int, SinglePtrStorageStrategy, LinkCounterOwnershipStrategy>
+  SmartPointer<int, SinglePtrStorageStrategy, RefCounterOwnershipStrategy>
       sm_ptr_2(new int);
   *sm_ptr_2 = -9;
   cout << *sm_ptr_2 << endl;
   {
-    SmartPointer<int, SinglePtrStorageStrategy, LinkCounterOwnershipStrategy>
+    SmartPointer<int, SinglePtrStorageStrategy, RefCounterOwnershipStrategy>
         sm_ptr_2_1(sm_ptr_2);
     cout << *sm_ptr_2_1 << endl;
     *sm_ptr_2_1 = 12;
   }
   cout << *sm_ptr_2 << endl;
-  SmartPointer<int, SinglePtrStorageStrategy, LinkCounterOwnershipStrategy>
+  SmartPointer<int, SinglePtrStorageStrategy, RefCounterOwnershipStrategy>
       sm_ptr_2_2(new int);
   *sm_ptr_2_2 = 13;
   sm_ptr_2 = sm_ptr_2_2;
   cout << *sm_ptr_2 << endl;
+
+  SmartPointer<int, SinglePtrStorageStrategy, LinkedRefOwnershipStrategy>
+      sm_ptr_3(new int);
+  *sm_ptr_3 = -99;
+  cout << *sm_ptr_3 << endl;
+  {
+    SmartPointer<int, SinglePtrStorageStrategy, LinkedRefOwnershipStrategy>
+        sm_ptr_3_1(sm_ptr_3);
+    cout << *sm_ptr_3_1 << endl;
+    *sm_ptr_3_1 = 44;
+  }
+  cout << *sm_ptr_3 << endl;
+  SmartPointer<int, SinglePtrStorageStrategy, LinkedRefOwnershipStrategy>
+      sm_ptr_3_2(new int);
+  *sm_ptr_3_2 = 66;
+  sm_ptr_3 = sm_ptr_3_2;
+  cout << *sm_ptr_3 << endl;
+  //------------------------Array--------------------------------------------
+  SmartPointer<int, ArrayStorageStrategy, LinkedRefOwnershipStrategy>
+      sm_ptra(new int[3]);
+  *sm_ptra = 3;
+  sm_ptra[1] = 2;
+  sm_ptra[2] = 1;
+  cout << *sm_ptra << " " << sm_ptra[1] << " " << sm_ptra[2] << endl;
+  
   return 0;
 }

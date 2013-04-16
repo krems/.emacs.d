@@ -13537,3 +13537,27 @@ Created by Dave Benjamin <ramen@ramenfest.com> Dec 23 2005."
     (variable-pitch ((t (:family "helv")))))))
 
 ;;; color-theme-library.el ends here
+(defun color-theme-generated ()
+  (interactive)
+  (color-theme-install
+   '(color-theme-generated
+      ((background-color . "#000000")
+      (background-mode . light)
+      (border-color . "#000000")
+      (cursor-color . "#5d89ea")
+      (foreground-color . "#e0e0e0")
+      (mouse-color . "black"))
+     (fringe ((t (:background "#000000"))))
+     (mode-line ((t (:foreground "#ffffff" :background "#555753"))))
+     (region ((t (:background "#380d45"))))
+     (font-lock-builtin-face ((t (:foreground "#2982e0"))))
+     (font-lock-comment-face ((t (:foreground "#4c5d32"))))
+     (font-lock-function-name-face ((t (:foreground "#db0fa3"))))
+     (font-lock-keyword-face ((t (:foreground "#4c49da"))))
+     (font-lock-string-face ((t (:foreground "#2fbc1a"))))
+     (font-lock-type-face ((t (:foreground"#a337f1"))))
+     (font-lock-constant-face ((t (:foreground "#d68f0a"))))
+     (font-lock-variable-name-face ((t (:foreground "#2ba19d"))))
+     (minibuffer-prompt ((t (:foreground "#d78914" :bold t))))
+     (font-lock-warning-face ((t (:foreground "red" :bold t))))
+     )))

@@ -1,0 +1,18 @@
+#include <iostream>
+
+class Complex {
+  int real;
+  int image;
+ public:
+  istream& operator >> (istream& is, Complex& obj) {
+    std::cin >> real;
+    // std::cin >> NULL;
+    std::cin >> image;
+    return is;
+  }
+};
+
+
+int main() {
+  return 0;
+}

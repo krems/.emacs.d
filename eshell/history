@@ -1,2 +1,11 @@
 ping -6 ya.ru
 ping -h
+g++ get_problem_numbers.cpp -o get_problem_numbers
+./get_problem_numbers 
+cd second/
+g++ 5.cc -o 5
+g++ 5.cc -o 5
+g++ 5.cc -o 5 --std=c++0x
+g++ 5.cc -o 5 --std=c++0x
+echo 23 1>/dev/null
+echo 23 

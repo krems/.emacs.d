@@ -1,0 +1,114 @@
+// Author: Valeriy Ovchinnikov
+// Key string: kremsnx@yandex.ru - 1
+
+#include <iostream>
+#include <stdexcept>
+
+template<typename KeyType>
+struct Node {
+ public:
+  size_t id;
+  Node* left;
+  Node* right;
+  KeyType key;
+};
+
+template<typename T>
+class FoundException: public std::exception {
+ public:
+  FoundException(Node<T>* node): node(node) {}
+  Node<T>* node;
+};
+
+template<typename T>
+class BinaryTree {
+ public:
+  void add(T element) {
+    if(root != NULL) {
+      add(element, root);
+    } else {
+      root = createNode(element);
+    }
+  }
+
+  Node<T>* find(T element) {
+    if(root == NULL) {
+      return NULL;
+    }
+    return find(element, root);
+  }
+
+  BinaryTree() {
+    root = NULL;
+  }
+
+  ~BinaryTree() {
+    destroyTree(root);
+  }
+  
+ private:
+  Node<T>* root;
+  
+  Node<T>* find(T element, Node<T>* node) {
+    if(node != NULL) {
+      if(element == node->key) {
+        throw FoundException<T>(node);
+      }
+      if(element < node->key) {
+        return find(element, node->left);
+      }
+      return find(element, node->right);
+    }
+    return NULL;
+  }
+
+  void add(const T& element, Node<T>* node) {
+    if(element < node->key) {
+      if(node->left != NULL) {
+        add(element, node->left);
+      } else {
+        node->left = createNode(element);
+      }  
+    } else if(node->right != NULL) {
+      add(element, node->right);
+    } else {
+      node->right = createNode(element);
+    }
+  }
+  
+  Node<T>* createNode(const T& element) {
+    Node<T>* node = new Node<T>;
+    node->key = element;
+    node->left = NULL;  
+    node->right = NULL;
+    return node;
+  }
+
+  void destroyTree(Node<T>* node) {
+    if (node != NULL) {
+      destroyTree(node->left);
+      destroyTree(node->right);
+      delete node;
+    }
+  }
+};
+
+
+int main() {
+  BinaryTree<int> btree;
+  btree.add(3);
+  btree.add(5);
+  btree.add(4);
+  btree.add(0);
+  btree.add(9);
+  Node<int>* node = NULL;
+  try {
+    node = btree.find(0);
+  } catch(const FoundException<int>& e) {
+    node = e.node;
+  }
+  if (node != NULL) {
+    std::cout << node->key << std::endl;
+  }
+  return 0;
+}

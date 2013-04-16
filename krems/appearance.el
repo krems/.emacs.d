@@ -1,21 +1,30 @@
+(require 'color-theme)
+(color-theme-generated)
+
 ;; Set font
 (set-default-font "-unknown-Terminus-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 ;; (set-default-font
 ;; "-unknown-TlwgMono-normal-normal-normal-*-*-*-*-*-m-0-iso10646-1")
 ;; not bad too
 ;; Set font'n'background color
-(set-foreground-color "black")
-(set-background-color "dark grey")
+;; (set-foreground-color "black")
+;; (set-background-color "dark grey")
 ;; Set selection area color
-(set-face-background 'region "light blue")
+;; (set-face-background 'region "light blue")
 ;; Set curosor color
-(set-cursor-color "blue")
+;; (set-cursor-color "blue")
 ;; Scrolling height
 (setq scroll-step 1)
 ;; Highlighting current string
 (global-hl-line-mode 1)
+(set-face-background 'hl-line "#0e2735")  
 ;; Highlighing strings with tabs and longer than 80 characters
 (add-hook 'c++-mode-hook '(lambda () (highlight-lines-matching-regexp ".\\{81\\}" 'hi-blue)))
+(add-hook 'python-mode-hook '(lambda () (highlight-lines-matching-regexp ".\\{81\\}" 'hi-blue)))
+;; Indicating line numbers
+(global-linum-mode t)
+;; (add-hook 'c++-mode-hook '(lambda () ((linum-mode t))))
+;; (add-hook 'python-mode-hook '(lambda () ((linum-mode 1))))
 ;; Set mode-line color
 (set-face-background 'modeline "#444343")
 ;; Show column number in mode line

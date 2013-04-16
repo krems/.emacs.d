@@ -417,7 +417,8 @@ of `color-theme-history-max-length'.")
     (color-theme-pok-wob "White On Black" "S. Pokrovsky <pok@nbsp.nsk.su>")
     (color-theme-pok-wog "White On Grey" "S. Pokrovsky <pok@nbsp.nsk.su>")
     (color-theme-word-perfect "WordPerfect" "Thomas Gehrlein <Thomas.Gehrlein@t-online.de>")
-    (color-theme-xp "XP" "Girish Bharadwaj <girishb@gbvsoft.com>"))
+    (color-theme-xp "XP" "Girish Bharadwaj <girishb@gbvsoft.com>")
+    (color-theme-generated "My First Theme" "Description"))
   "List of color themes.
 
 Each THEME is itself a three element list (FUNC NAME MAINTAINER &optional LIBRARY).
@@ -1547,7 +1548,7 @@ VARIABLE-DEFINITIONS is an alist of variable settings.  These are
 installed with `color-theme-install-variables'.
 
 FACE-DEFINITIONS is an alist of face definitions.  These are installed
-with `color-theme-install-faces'.
+pwith `color-theme-install-faces'.
 
 If `color-theme-is-cumulative' is nil, a color theme will undo face and
 frame-parameter settings of previous color themes."

@@ -1,0 +1,73 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using std::string;
+using std::vector;
+using std::endl;
+using std::cin;
+using std::cout;
+
+struct Block {
+  size_t left;
+  size_t right;
+};
+
+// Block with the farthest right limit
+static Block block;
+
+// Resets block params if right limit passed by new block
+void resetBlock(size_t blockStart, const vector<size_t>& zfunc) {
+  block.left = blockStart;
+  block.right = zfunc[blockStart] + blockStart - 1;
+}
+
+size_t getShortestCycleLength(const string& input) {
+  block.left = 0;
+  block.right = 0;
+  // Z-function values
+  vector<size_t> zfunc;
+  size_t strLength = input.length();
+  zfunc.resize(strLength);
+  zfunc[0] = strLength;
+  for (size_t zIndex = 1; zIndex <= strLength / 2; ++zIndex) {
+    if (zIndex <= block.right) { // Under block
+      if (zfunc[zIndex - block.left] > block.right - zIndex) {
+        size_t substrIndex = block.right + 1;
+        while (substrIndex < strLength &&
+               input[substrIndex - zIndex] == input[substrIndex]) {
+          ++substrIndex;
+        }
+        zfunc[zIndex] = substrIndex - zIndex;
+        resetBlock(zIndex, zfunc);
+      } else {
+        zfunc[zIndex] = zfunc[zIndex - block.left];
+      }
+    } else { // Out of block
+      size_t strIndex = 0;
+      size_t substrIndex = zIndex;
+      while (substrIndex < strLength && 
+             input[strIndex] == input[substrIndex]) { // Naive
+        ++strIndex;
+        ++substrIndex;
+      }
+      zfunc[zIndex] = strIndex;
+      resetBlock(zIndex, zfunc);
+    }
+    if (zfunc[zIndex] == strLength - zIndex) {
+      if (strLength % zIndex == 0) {
+        return zIndex;
+      }
+    }
+  }
+  return strLength;
+}
+
+int main() {
+  string input;
+  cin >> input;
+  size_t length = input.length();
+  size_t cycleLength = getShortestCycleLength(input);
+  cout << length / cycleLength << endl; 
+  return 0;
+}

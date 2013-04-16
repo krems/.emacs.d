@@ -1,0 +1,16 @@
+import sys
+
+inputStr = sys.args[1]
+n = sys.args[2]
+
+dict = dict()
+for i in xrange(0, length(inoutStr) - n):
+    substr = inputStr[i: i+ n]
+    if dict.has_key(substr):
+        dict[substr] += 1
+    else:
+        dict[substr] = 1
+#dict.sort()
+
+for s in dict.keys():
+    print s
