@@ -1,0 +1,54 @@
+#!/usr/bin/python
+
+# Author: Valeriy Ovchinnikov
+# Iterable algorithm, which creates new possible xml for order, 
+# changing a few params(by increment).
+# input_file - source working xml
+# output_file - where to put xml with incremented fields
+import sys
+import re
+
+def getNumber(str, start_pos):
+    return str[start_pos:].split('"')[0]
+
+if len(sys.argv) < 3:
+    print 'Usage: xml_modificator.xml <input_file> <output_file> [isETTE = false]'
+    sys.exit(1)
+
+input_file = sys.argv[1] # ex: "C:\Provide HSIA.xml"
+output_file = sys.argv[2] # ex: C:\Provide_HSIA_new.xml
+if len(sys.argv) == 4:
+    isETTE = sys.argv[3]
+else:
+    isETTE = 'false'
+
+finput = open(input_file)
+data = finput.read()
+data = str(data)
+finput.close()
+
+if isETTE:
+    to_change = ['orderActionID="', 'APID="',
+                 'fmsAddressID="']
+else:
+    to_change = ['referenceNumber="', 'orderActionID="', 'APID="',
+                 'fmsAddressID="']
+if isETTE != 'true':
+    for i in xrange(0, len(to_change)):
+        pos = data.find(to_change[i])
+        if pos != -1:
+            value = getNumber(data, pos + len(to_change[i]))
+            new_value = int(value) + 1
+            print to_change[i][0:-2], ":\nold value: ", value ,", new value: ", new_value
+            data = data.replace(value, str(new_value))
+
+p = re.compile('referenceNumber="[\d]{10}A"')
+pos = re.search(p, data).span()
+value = data[int(pos[0]) + len('referenceNumber="'):int(pos[1]) - 2]
+new_value = int(value) + 1
+print "referenceNumber:\nold value: ", value ,", new value: ", new_value
+data = data.replace(value,str(new_value))
+
+foutput = open(output_file, "w+")        
+foutput.write(data)
+foutput.close()

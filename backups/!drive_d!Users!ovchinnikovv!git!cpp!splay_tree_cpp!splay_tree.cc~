@@ -1,0 +1,45 @@
+template <typename T>
+struct Node {
+  Node* left;
+  Node* right;
+  Node* parent;
+  T key;
+};
+
+template <typename T>
+class SplayTree {
+  Node<T>* root;
+ public:
+  SplayTree(T key) {
+    root = new Node<T>(key);
+  }
+  SplayTree() : SplayTree(0) {};
+
+  Node<T>* add(T key) {
+
+  }
+
+  Node<T>* remove(T key) {
+
+  }
+
+  Node<T>* find(T key) {
+
+  }
+ private:
+  void splay(Node<T>* node) {
+
+  }
+  
+  Node<T>* rotateRight(Node<T>* node) {
+
+  }
+
+  Node<T>* rotateLeft(Node<T>* node) {
+
+  }
+};
+
+int main() {
+  return 0;
+}

@@ -1,0 +1,84 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("d:/Users/ovchinnikovv/git/cpp/" . "splay_tree_cpp/")
+ ("d:/Users/ovchinnikovv/git/" . "python/")
+ ("d:/Users/ovchinnikovv/" . "git/")
+ ("d:/" . "Users/")
+ ("d:/Users/" . "ovchinnikovv/")
+ ("c:/Users/ovchinnikovv/.emacs.d/" . "ovchinnikovv/")
+ ("c:/Users/ovchinnikovv/" . ".emacs.d/")
+ ("c:/Users/" . "ovchinnikovv/")
+ ("c:/" . "Users/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "d:/Users/ovchinnikovv/git/python/"
+ "d:/Users/ovchinnikovv/git/cpp/"
+ "d:/Users/ovchinnikovv/git/cpp/splay_tree_cpp/"
+ "d:/Users/ovchinnikovv/git/cpp/avl_tree_cpp/"
+ "d:/Users/ovchinnikovv/git/cpp/lang/"
+ "c:/Users/ovchinnikovv/.emacs.d/ovchinnikovv/"
+ "c:/Users/"
+ "c:/Users/ovchinnikovv/"
+ "d:/Users/ovchinnikovv/git/"
+ "c:/Users/ovchinnikovv/Desktop/"
+ "c:/Users/ovchinnikovv/.emacs.d/"
+ "c:/Documents and Settings/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "xml_modificator.py"
+ "KMP.cc"
+ "splay_tree.cc"
+ "avl_tree.cc"
+ "language_factory.h"
+ "factory.h"
+ "language.h"
+ "Makefile"
+ "main.cc"
+ "language_russian.cc"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("c:/Users/ovchinnikovv/Desktop/" (20872 51877) "~$P.IM.SOW1PH1.DSG.SI.docx" "~$P.IM.SOW1PH1.DSG.PRV.docx" "~$P.IM.SOW1PH1.DSG.Infrastructure Orders.docx" "working.sql" "telus_pl_sql_script_dates.sql" "Shaw/" "Service Order Management. Developer's Guide v.8.1.3.6.pdf" "Provide HSIA.xml" "ok.txt" "not_ok.txt" "NetCracker Essentials/" "NCHistory SQL API Design Specification.doc" "incorrect.txt" "Documentation 8.0 Release/" "desktop.ini" "correct.txt" "../" "./")
+
+ ("d:/Users/ovchinnikovv/git/python/" (20855 39946) "../" "./")
+
+ ("d:/Users/ovchinnikovv/git/cpp/" (20872 50332) "splay_tree_cpp/" "lang/" "KMP.cc" "kmp/" "heap_sort_cpp/" "avl_tree_cpp/" "../" "./")
+
+ ("c:/Users/ovchinnikovv/" (20872 45589) "_viminfo" "weblogic/" "VirtualBox VMs/" "Videos/" "Untitled1.sql" "Untitled.sql" "Tracing/" "Templates/" "SVN/" "Start Menu/" "soapUI-Tutorials/" "soapui-settings.xml" "shaw_comments" "SendTo/" "Searches/" "Saved Games/" "Recent/" "ProgramFiles/" "PrintHood/" "Pictures/" "Oracle/" "ntuser.pol" "ntuser.ini" "NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000002.regtrans-ms" "NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TMContainer00000000000000000001.regtrans-ms" "NTUSER.DAT{016888bd-6c6f-11de-8d1d-001e0bcde3ec}.TM.blf" "ntuser.dat.LOG2" "ntuser.dat.LOG1" "NTUSER.DAT" "NetHood/" "My Documents/" "Music/" "Local Settings/" "Links/" "jad/" "Favorites/" "Downloads/" "Documents/" "Desktop/" "default-soapui-workspace.xml" "Cookies/" "Contacts/" "Application Data/" "AppData/" "apache-ant-1.8.3/" ".VirtualBox/" ".ssh/" ".recentf" ".netcracker/" ".netbeans-registration/" ".netbeans/" ".m2/" ".IntelliJIdea12/" ".IntelliJIdea10/" ".ido.last" ".gradle/" ".gitconfig" ".emacs.d/" ".emacs-places" ".bash_history" "../" "./")
+
+ ("d:/Users/ovchinnikovv/git/cpp/avl_tree_cpp/" (20863 48474) "avl_tree.cc" ".git/" "../" "./")
+
+ ("d:/Users/ovchinnikovv/git/cpp/splay_tree_cpp/" (20866 21404) "splay_tree.cc" "README.md" ".git/" "../" "./")
+
+ ("c:/Program Files/emacs-24.2/bin/" (20866 10263) "runemacs.exe" "movemail.exe" "libXpm.dll" "hexl.exe" "etags.exe" "emacs_fullscreen.exe" "emacsclientw.exe" "emacsclient.exe" "emacs.exe" "ebrowse.exe" "ddeclient.exe" "ctags.exe" "COPYING" "cmdproxy.exe" "addpm.exe" ".emacs.desktop.lock" ".emacs.desktop" "../" "./")
+
+ ("d:/Users/ovchinnikovv/git/cpp/lang/" (20862 8612) "Makefile" "main.cc" "language_russian.h" "language_russian.cc" "language_factory.h" "language_factory.cc" "language_english.h" "language_english.cc" "language.h" "factory.h" "../" "./")
+
+ ("d:/Users/ovchinnikovv/git/" (20855 39981) "python/" "cpp/" "../" "./")
+
+ ("c:/Users/ovchinnikovv/.emacs.d/ovchinnikovv/" (20853 7970) "google-cpp-style.el" "appearance.el" "../" "./")
+
+ ("c:/Users/ovchinnikovv/.emacs.d/" (20853 8364) "tmp/" "starter-kit.org" "starter-kit.el" "src/" "snippets/" "README.md" "places" "package.el" "ovchinnikovv/" "loaddefs.el" "init.el" "eshell/" "elpa-to-submit/" "elpa/" "dominating-file.el" "custom.el" "COPYING" "backups/" "auto-save-list/" ".git/" "../" "./")
+
+ ("c:/Users/" (20853 7556) "10dd~1/" "shevtsov/" "shabalkinan/" "Public/" "ovchinnikovv/" "Kozhaev/" "h_Sungatov/" "h_shabalkinan/" "h_perebeynosov/" "desktop.ini" "Default User/" "Default/" "All Users/" "Administrator/" "ADM/" "6/" "34234/" "243/" "#nothing.cc#" "../" "./")
+
+ ("d:/Users/" (20806 48611) "ovchinnikovv/" "jd-gui-0.3.3.windows.zip" "jd-gui-0.3.3.windows/" "IntelliJad_9_8024.zip" "ideajad-1162.2.zip" "ideajad-1162.2/" "../" "./")
+
+ ("d:/Users/ovchinnikovv/" (20843 58502) "xp.vdi" "virtual share/" "TBIProcessorAsync.class" "IdeaProjects/" "git/" "en_windows_xp_professional_with_service_pack_3_x86_cd_vl_x14-73974.iso" "../" "./")
+
+ ("c:/Program Files/" (20824 27704) "Wireshark/" "Windows Sidebar/" "Windows Portable Devices/" "Windows Photo Viewer/" "Windows NT/" "Windows Media Player/" "Windows Mail/" "Windows Journal/" "Windows Defender/" "WinDjView/" "Unlocker/" "Uninstall Information/" "TortoiseSVN/" "sqldeveloper64-3.0.03.97-no-jre/" "Reference Assemblies/" "Oracle/" "Netcracker/" "NetBeans 6.9.1/" "MSBuild/" "Microsoft Silverlight/" "Microsoft Office/" "Microsoft Lync/" "Java/" "Internet Explorer/" "IBM/" "Google/" "glassfish-3.0.1/" "Far2/" "Far Manager/" "emacs-24.2/" "DVD Maker/" "desktop.ini" "Common Files/" "CCleaner/" "Apache Software Foundation/" "7-Zip/" "../" "./")
+
+ ("c:/Users/ovchinnikovv/.emacs.d/krems/" (20806 57272) "google-cpp-style.el" "appearance.el" "../" "./")
+
+ ("c:/Program Files/emacs-24.2/" (20596 10380) "site-lisp/" "README.W32" "README" "lisp/" "leim/" "info/" "etc/" "COPYING" "BUGS" "bin/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t
