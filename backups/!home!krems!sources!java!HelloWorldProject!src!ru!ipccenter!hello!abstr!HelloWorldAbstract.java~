@@ -1,7 +1,0 @@
-package ru.ipccenter.hello.abstr;
-
-abstract class HelloWorldAbstract {
-  public String text = "Hello world!";
-
-  public abstract void print();
-}

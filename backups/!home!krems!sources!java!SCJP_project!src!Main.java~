@@ -1,3 +1,0 @@
-interface Main extends Implementizable, Doable {
-  void doNothing();
-}

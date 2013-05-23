@@ -1,7 +1,0 @@
-for i in xrange(1, 10):
-    for d in xrange(2, i):
-        if i % d == 0:
-            print "Composite"
-            break
-    else:
-        print "Prime"

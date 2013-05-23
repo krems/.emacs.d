@@ -1,9 +1,0 @@
-class SortedDict(dict):
-    def __str__(self):
-        keyset = self.keys()
-        keyset.sort()
-        for key in keyset:
-            print self[key]
-
-SortedDict dic = ["a":1, "b":2]
-print dic

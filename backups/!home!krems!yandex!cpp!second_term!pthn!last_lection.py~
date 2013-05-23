@@ -1,4 +1,0 @@
-s1 = "Hello Привет"
-s2 = u'Привет'
-s1.decode('utf-8')
-s1.encode('utf8')

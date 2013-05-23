@@ -1,8 +1,0 @@
-T* operator ->() // recursion
-T& operator *()
-;
-передача владения
-двусвязный список
-указатель на структуру
-
-cowPtr - copy on write
