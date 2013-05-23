@@ -1,0 +1,5 @@
+\begin{document}
+\newpage
+\chapter*{Заключение}
+\addcontentsline{toc}{chapter}{\tocsecindent{Заключение}}
+\end{document}

@@ -1,0 +1,5 @@
+\begin{document}
+\newpage
+\chapter*{Список литературы:}
+\addcontentsline{toc}{chapter}{\tocsecindent{Список литературы}}
+\end{document}

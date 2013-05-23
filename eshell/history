@@ -1,11 +1,128 @@
-ping -6 ya.ru
-ping -h
-g++ get_problem_numbers.cpp -o get_problem_numbers
-./get_problem_numbers 
-cd second/
-g++ 5.cc -o 5
-g++ 5.cc -o 5
-g++ 5.cc -o 5 --std=c++0x
-g++ 5.cc -o 5 --std=c++0x
-echo 23 1>/dev/null
-echo 23 
+python lection_constructor.py 
+python lection_constructor.py 
+python lection_constructor.py 
+python lection_constructor.py 
+python lection_constructor.py 
+python lection_constructor.py 
+python lection_constructor.py 
+python
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python
+python testtest.py 
+python testtest.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python SortedDict.py 
+python
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python cached.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+python rational.py 
+g++ --std=c++0x heap.cc -o heap_sort
+g++ --std=c++0x heap.cc -o heap_sort
+g++ --std=c++0x heap.cc -o heap_sort
+g++ --std=c++0x heap.cc -o heap_sort
+cd ../sources/cpp/git/heap_sort_cpp/
+g++ heap.cc -o heap
+g++ heap.cc -o heap
+g++ heap.cc -o heap --std=c++0x
+g++ heap.cc -o heap --std=c++0x
+g++ heap.cc -o heap --std=c++0x
+g++ heap.cc -o heap --std=c++0x
+g++ heap.cc -o heap --std=c++0x
+g++ heap.cc -o heap --std=c++0x
+./heap 
+g++ heap.cc -o heap --std=c++0x
+g++ heap.cc -o heap --std=c++0x
+./heap 
+g++ heap.cc -o heap --std=c++0x
+./heap 
+g++ heap.cc -o heap --std=c++0x
+./heap 
+python qsort.py 
+matlab -nojvm
+export $PATH=$PATH;/usr/local/MATLAB/
+matlab -nojvm
+bin/matlab -nojvm
+cd bin
+ls
+cd R2012a/
+ls
+cd bin
+./matlab -nojvm
+ls /usr/bin/env
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python ocean.py ocean.conf 
+python last_lection.py 
+python last_lection.py 
+python last_lection.py 
+python last_lection.py --input 1 br tr
+python last_lection.py --input 1 br tro
+python last_lection.py --input 1 br tro
+python last_lection.py --input 1 br tro
+python last_lection.py --input 1 br tro
+python

@@ -1,0 +1,14 @@
+def cached(f):
+    cache = dict()
+    def cached_f(*args):
+        if cache.has_key(*args):
+            return cache[*args]
+        tmp = f(*args)
+        cache[*args] = tmp
+        return tmp
+
+@cached
+def very_hard_func(string):
+    return "String: " + string
+
+print very_hard_func("Hi!")

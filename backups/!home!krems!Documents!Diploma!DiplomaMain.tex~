@@ -9,12 +9,18 @@
 \makeatletter
 \renewcommand{\@biblabel}[1]{#1.} % Заменяем библиографию с квадратных скобок на точку:
 \makeatother
+\newcommand{\tocsecindent}{\hspace{7mm}} % для введения ввыравнивание
 
 \usepackage{geometry} % Меняем поля страницы
 \geometry{left=2cm} % левое поле
 \geometry{right=1.5cm} % правое поле
 \geometry{top=1cm} % верхнее поле
 \geometry{bottom=2cm} % нижнее поле
+
+\makeatletter % Для вставки римских цифр в текст
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
 
 \renewcommand{\theenumi}{\arabic{enumi}} % Меняем везде перечисления на цифра.цифра
 \renewcommand{\labelenumi}{\arabic{enumi}} % Меняем везде перечисления на цифра.цифра
@@ -27,4 +33,8 @@
 \begin{document}
 \input{Diploma-Title} % это титульный лист
 \tableofcontents % это оглавление, которое генерируется автоматически
+\input{Diploma-Introduction} % это введение
+
+\input{Diploma-Conclusion} % заключение
+\input{Diploma-Literature} % список литературы
 \end{document}

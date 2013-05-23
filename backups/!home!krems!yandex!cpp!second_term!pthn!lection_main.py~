@@ -1,0 +1,22 @@
+a = 1
+
+def f():
+    global a
+    a = 2
+
+class C:
+    print "Hello"
+    for i in xrange(10):
+        print i
+    a = 2
+    def func(x, y):
+        print x + y
+
+C.b = 123
+print C.b
+del C.b
+c = C()
+print c.a
+c.x = 50
+c.a = 25
+print c.a, C.a, c.x

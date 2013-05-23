@@ -1,0 +1,4 @@
+class C:
+    pass
+Z = type("Name", (object, C), ["x":1, "y":2])
+# Z = type("Name", (object,), ["x":1, "y":2])

@@ -10,6 +10,8 @@ using namespace std;
 typedef vector<double> Point;
 typedef vector<Point> Points;
 
+bool lots_of_clusters = false;
+
 // Gives random number in range [0..max_value]
 unsigned int UniformRandom(unsigned int max_value) {
     unsigned int rnd = ((static_cast<unsigned int>(rand()) % 32768) << 17) |
@@ -62,12 +64,11 @@ vector<size_t> KMeans(const Points& data, size_t K) {
 
     // Initialize centroids randomly at data points
     Points centroids(K);
-#pragma omp parallel for schedule(static)
+#pragma omp parallel for schedule(static) if(lots_of_clusters)
     for (size_t i = 0; i < K; ++i) {
         centroids[i] = data[UniformRandom(data_size - 1)];
     }
 
-#pragma omp parallel shared(centroids, data, clusters)
     bool converged = false;
     while (!converged) {
         converged = true;
@@ -94,7 +95,7 @@ vector<size_t> KMeans(const Points& data, size_t K) {
 #pragma omp atomic
             ++clusters_sizes[clusters[i]];
         }
-#pragma omp parallel for schedule(static)
+#pragma omp parallel for schedule(static) if(lots_of_clusters)
         for (size_t i = 0; i < K; ++i) {
             if (clusters_sizes[i] != 0) {
                 for (size_t d = 0; d < dimensions; ++d) {
@@ -105,7 +106,6 @@ vector<size_t> KMeans(const Points& data, size_t K) {
             }
         }
     }
-
     return clusters;
 }
 
@@ -138,7 +138,9 @@ int main(int argc , char** argv) {
     }
     double start_time = omp_get_wtime();
     size_t K = atoi(argv[1]);
-
+    if (K > 100) {
+      lots_of_clusters = true;
+    }
     char* input_file = argv[2];
     ifstream input;
     input.open(input_file, ifstream::in);

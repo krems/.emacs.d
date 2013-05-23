@@ -1,0 +1,22 @@
+#include <vector>
+
+using std::vector;
+
+class Vertex {
+
+};
+
+class Trie {
+
+ public:
+  Trie() {
+  }
+};
+
+class Automata {
+
+};
+
+int main() {
+  return 0;
+}
