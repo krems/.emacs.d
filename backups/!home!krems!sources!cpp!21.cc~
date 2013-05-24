@@ -1,7 +1,0 @@
-#include <iostream>
-#include <matrix>
-
-int main() {
-  Matrix matrix;
-  return 0;
-}

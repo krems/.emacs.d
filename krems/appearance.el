@@ -26,7 +26,7 @@
 ;; (add-hook 'c++-mode-hook '(lambda () ((linum-mode t))))
 ;; (add-hook 'python-mode-hook '(lambda () ((linum-mode 1))))
 ;; Set mode-line color
-(set-face-background 'modeline "#444343")
+;; (set-face-background 'mode-line "#444343")
 ;; Show column number in mode line
 (setq column-number-mode t)
 
@@ -50,6 +50,9 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
              '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
 (fullscreen)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode -1)
 ;; C-'russian letter' -> C-'english letter'
 (defun reverse-input-method (input-method)
   "Build the reverse mapping of single letters from INPUT-METHOD."
